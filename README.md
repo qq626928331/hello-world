@@ -1,2 +1,2 @@
 # hello-world
-This is my beginning to code！！！！
+This is my beginning to learn code！！！！
