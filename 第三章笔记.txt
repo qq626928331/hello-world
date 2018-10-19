@@ -1,0 +1,64 @@
+数据库模式定义语言：DDL(Data Definition Language)
+数据库操作语言： DML(Data Manipulation Language)
+作用:主要用来实现对数据库中数据进行操作的语言
+  1.增加 insert 
+  2.修改 update
+  3.删除 Delete （drop 销毁）
+一 增加（insert）：
+   1.1:
+        向表中添加一行数据 insert (不会去更改表中结构，只是 单纯向表中添加 一行数据)
+        INSERT INTO department (department_id,department_name,department_leader,department_location)
+        VALUES (2,'软件技术系','黄帮主','南湖校区')
+        INSERT INTO department (department_id,department_name,department_leader,department_location)
+        VALUES (3,'机械设计系','王胖子','浑南校区')
+   注意：
+        如果向表中所有列插入信息 可以直接 去写 对应的 VALUE值
+        但是value值的顺序应该和表中列的顺序一致 
+        INSERT INTO department VALUES('孙老师','信息与控制工程','南湖校区',6)
+   1.2 插入日期：
+          mysql："1997-10-12"
+          oracle："10-10月-97"
+   复制表的一种：子查询复制
+   1.3 仅仅复制表的结构： 
+         CREATE TABLE TestPerson2 AS SELECT id,sex,NAME FROM person where 1=0
+   1.4 既复制表的结构 又复制表的数据
+
+   select * from emp
+   select 所有列名  from emp
+   那个查的快？
+   select * form emp 这个语句 在查询时 会首先去数据字典里 查找一下 * 所代表的含义 找到以后 再去 查询 所有列
+   而 select 所有列名  from emp 它 没上面的过程 而是 直接去 查询 表中的列名 就可以了。
+   
+   1.5 常用的运算符：
+   ！= 和<> 效果一样
+   ifnull函数：
+   -- 如果 IFNULL(value1,VALUE2)函数中  value1 的值 不为空的时候则返回value1 
+   -- 如果 value1的值为空 则返回value2 的值 
+   1.6 删除数据
+   1.7 截断表 和 删除表 区别
+   截断表 他会释放 表所占的内存空间
+   删除表 他不会释放 表所占的内存空间，表依然存在计算机当中表所占的空间不会消失 
+   可以进行回滚操作
+   删除表示 数据库操作语言 dml 
+   截断表 属于数据库模式定义语言  ddl 整个表已经释放他所在的空间
+   不可以进行回滚操作
+   1.8 数据库事务的特性：
+   1.原子性：
+        数据像原子一样不可分割，增加查询修改删除要么全部成功 要么全部失败保证数据的一致性
+   2.一致性：
+        执行成功后的sql语句 数据一致
+   3. 隔离性：
+        事务与事务之间不会被干扰 
+   4.永久性
+    事务一旦提交 对数据的改变就是永久的
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+SELECT user_id,id FROM user,person 
+SELECT * FROM person WHERE id=5   
+SELECT * FROM person,hobbies,`subject` WHERE hobbies.hobby_id=person.hobby_id AND person.subject_id=subject.subject_id AND id=5
+SELECT E.ENAME, E.SAL, S.GRADE
+FROM emp E, salgrade S
+WHERE e.SAL BETWEEN s.losal AND s.hisal ORDER BY SAL
+-- 第六章 练习2 1题
+SELECT E.empno 员工编号, E.ename 员工姓名, E.sal 工资, S.grade 工资等级, D.loc '工作地点'
+FROM emp E, dept D, salgrade S
+WHERE  E.deptno=D.deptno AND e.sal BETWEEN s.losal AND s.hisal ORDER BY S.grade,sal
+
+SELECT E.ename 员工姓名, X.ename 上级姓名
+FROM emp E,emp X
+WHERE E.mgr=X.empno
+
+SELECT E.empno 员工编号, E.ename 员工姓名, X.empno 经理编号 ,X.ename 上级姓名,D.loc 工作地点
+FROM emp E, emp X, dept D
+WHERE E.mgr=X.empno AND E.deptno=D.deptno AND d.loc IN ('NEW YORK','CHICAGO')
+
+SELECT * 
+FROM emp
+NATURAL JOIN dept 
+
+SELECT * FROM emp
+JOIN dept D USING(deptno)
+WHERE deptno=20
+
+SELECT e.ename,e.deptno,d.dname,d.loc
+FROM emp e
+JOIN dept d ON (e.deptno=d.deptno)
+
+SELECT P.*,S.subject_name,H.hobby
+FROM person P
+JOIN hobbies H ON (H.hobby_id=P.hobby_id)
+JOIN  `subject` S ON (S.subject_id=P.subject_id)
+
+SELECT e.deptno, D.DEPTNO, E.ENAME, D.LOC
+FROM emp E LEFT OUTER JOIN dept D ON (E.DEPTNO=D.DEPTNO)
+
+SELECT e.deptno, D.DEPTNO dept部门编号, E.ENAME, D.LOC
+FROM emp E RIGHT OUTER JOIN dept D ON (E.DEPTNO=D.DEPTNO)
+
+-- 第六章 练习4 1题 
+SELECT * 
+FROM emp
+CROSS JOIN dept 
+
+-- 第六章 练习4 2题 
+SELECT E.ename 员工姓名,D.DNAME 部门名称,E.HIREDATE 入职日期 
+FROM emp E
+NATURAL JOIN dept D WHERE HIREDATE>'1980-5-1' /* E.deptno=D.deptno*/
+
+-- 第六章 练习4 3题 
+SELECT E.ENAME 员工姓名, M.ENAME 经理姓名
+FROM emp E 
+JOIN dept D
+ON (E.mgr=M.empno)
+
+-- 第六章 练习4 4题 
+SELECT emp
+
+-- 第六章 练习4 5题 
+SELECT E.ENAME 员工姓名, M.ENAME 经理姓名
+FROM emp E LEFT OUTER JOIN emp M 
+ON (E.mgr=M.empno)
+
+-- 第六章 练习4 6题 
+SELECT E.ENAME 员工姓名, M.ENAME 经理姓名
+FROM emp M RIGHT OUTER JOIN emp E 
+ON (E.mgr=M.empno)
+
+/*SELECT E.ename 员工姓名, X.ename 上级姓名
+FROM emp E,emp X
+WHERE */
+

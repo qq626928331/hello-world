@@ -1,0 +1,20 @@
+SELECT * FROM emp where mgr NOT in(200,300,400)
+SELECT * FROM emp where mgr=200 || mgr=300 || mgr=400
+-- 如果 IFNULL(value1,VALUE2)函数中  value1 的值 不为空的时候则返回value1 
+-- 如果 value1的值为空 则返回value2 的值
+SELECT  IFNULL(comm,600)  FROM emp where ename='马化腾'
+DELETE FROM emp where ename='马化腾'
+TRUNCATE table testperson2
+DELETE FROM user
+-- 删除 emp 表中 mgr 大于 200 的 员工记录
+DELETE FROM emp WHERE mgr>200
+-- 删除 emp  表中 出生日期 在 1950-1-1 到 1970-1-1 的员工记录（bet.....AND）
+ DELETE FROM emp WHERE hiredate BETWEEN '1950-1-1' AND '1970-1-1'
+-- 删除 emp 表中 大于平均工资的员工记录
+SELECT AVG(sal) FROM emp
+DELETE FROM emp  where sal>43250 
+
+SELECT * FROM emp where mgr>(SELECT AVG(mgr) FROM emp)
+ SET AUTOCOMMIT=0 
+INSERT INTO testperson1 VALUES(23,'男','张三')
+ROLLBACK

@@ -1,0 +1,81 @@
+一，选择题
+1. B	2. A	!3. C D	!4. D C	 5. B 	 6. C	  7. D	  8. B 	  9. B	 ?10.B
+11.A	!12.D B	13.C	14.A	 15.C	 16.A	  17.C	 !18.C A  19.D	 20.D
+二，填空题
+1._ %	2.关系型数据库 网状 层次	3.show engines innoDB	4.ANY ALL IN
+三，问答题
+1.
+事务也称工作单元，由一个或多个SQL语句组成的操作序列，这些SQL语句作为完整的工
+作单元，要么全部执行成功，要么全部执行失败。在数据库中通过事务来保证数据的一致性
+原子性
+一致性
+隔离性
+持久性
+
+2.TRUNCATE是ddl，只能删除表中的所有记录，释放储存空间，使用rollback不能回滚
+delete是dml，可以删除指定记录，不释放存储空间，使用rollback可以回滚
+
+3.先执行FROM子句
+  然后WHERE子句
+  之后GROUP BY
+  再之后HAVING
+  之后SELECT 
+  最后执行ORDER BY子句
+
+4.索引是一种特殊的数据库结构，可以用来快速查询数据库表中的特定记录。索引是
+提高数据库性能的重要方式。MySQL中，所有的数据类型都可以被索引
+创建表时创建索引
+在已经存在的表中创建索引
+使用alter table 语句创建索引
+
+
+四.编程题
+1.	CREATE DATABASE test
+2.	CREATE TABLE Student(
+	sn int(10) COMMENT '学号'，
+	sname VARCHAR(10) COMMENT '姓名'，
+	sex enum('男','女') COMMENT '性别',
+	age int(3) COMMENT '年龄',
+	dept int(10) COMMENT '组织部门'
+	)
+	CREATE TABLE Course(
+	cno int(10) COMMENT '编号'，
+	cname varchar（10） COMMENT '课程名称'
+	)
+	CREATE TABLE Sc(
+	sn int(10) COMMENT '学号'，
+	cno int(10) COMMENT '编号'，
+	score int(10) COMMENT '成绩'
+	)
+
+
+
+
+一，
+1. D	2. D	3. C	4. C	5. D	6. B	7. B	8. B	9. B	10.C
+11.B	!12.A d	!13.C a	14.D	15.D	16.C	17.D	18.D	19.D	20.B
+二，
+1.4	2.net start mysql	3.int	4._ %	5.123456	6.234516	
+7.ALTER TABLE emp ADD sal INT(10) DEFAULT 0
+8.自连接	9.commit
+三
+1.
+四
+1.	select empno，ENAME,sal 
+	from emp
+	WHERE SAL= ANY(	SELECT MIN(SAL) 
+			FROM EMP 
+			GROUP BY DEPTNO
+		      )
+	GROUP BY DEPTNO
+2.	SELECT DNAME,COUNT(EMPNO)
+	FROM EMP,DEPT
+	WHERE EMP.DEPTNO=DEPT.DEPTNO
+	GROUP BY DEPT.DEPTNO
+3.	SELECT DNAME,ROUND(MIN(SAL)),ROUND(MAX(SAL))
+	FROM EMP E,DEPT D
+	WHERE E.DEPTNO=D.DEPTNO
+	GROUP BY E.DEPTNO
+	HAVING COUNT(D.DEPTNO)>2
+	
+	 
