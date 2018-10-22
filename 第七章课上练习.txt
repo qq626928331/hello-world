@@ -1,0 +1,121 @@
+SELECT e.DEPTNO,e.JOB,SUM(SAL)
+FROM emp e 
+GROUP BY DEPTNO,JOB
+
+-- 第七章 练习2 1题 
+SELECT e.DEPTNO,D.dname,COUNT(DISTINCT e.EMPNO),MAX(SAL),MIN(SAL),SUM(SAL),AVG(SAL)
+FROM emp E,dept D
+WHERE e.DEPTNO=d.deptno 
+GROUP BY DEPTNO
+
+-- 第七章 练习2 2题 
+SELECT e.DEPTNO,D.dname,E.JOB,COUNT(DISTINCT e.EMPNO),MAX(SAL),MIN(SAL),SUM(SAL),AVG(SAL)
+FROM emp E,dept D
+WHERE e.DEPTNO=d.deptno 
+GROUP BY DEPTNO,JOB
+
+-- 第七章 练习2 3题 
+SELECT COUNT(e.ENAME),e.MGR,M.ENAME
+FROM emp E
+LEFT JOIN emp M ON(E.MGR=M.EMPNO)
+GROUP BY E.MGR
+
+SELECT DEPTNO,MAX(SAL)
+FROM EMP
+GROUP BY DEPTNO
+HAVING MAX(SAL)>2900
+
+-- 查询不是以sale开头的每个岗位工资总和大于5000的岗位名称，工资总和，结果按照工资总和升序排列。
+231546
+
+-- 第七章 练习3 1题 
+SELECT E.DEPTNO 部门编号,D.DNAME 部门名称,COUNT(E.EMPNO) 部门人数
+FROM emp E,dept D
+WHERE E.DEPTNO=D.DEPTNO
+GROUP BY E.DEPTNO
+HAVING COUNT(E.EMPNO)>2
+
+-- 第七章 练习3 2题 
+SELECT E.DEPTNO 部门编号,D.DNAME 部门名称,COUNT(E.EMPNO) 部门人数,AVG(E.SAL) 平均工资
+FROM emp E,dept D
+WHERE E.DEPTNO=D.DEPTNO
+GROUP BY E.DEPTNO
+HAVING AVG(E.SAL)>2000 
+AND COUNT(E.EMPNO)>2
+ORDER BY COUNT(E.EMPNO)
+
+SELECT	*
+FROM	emp
+WHERE
+	HIREDATE < (
+		SELECT	HIREDATE
+		FROM	emp E
+		WHERE ENAME = 'SCOTT'
+	)
+
+SELECT ENAME,JOB
+FROM emp
+WHERE JOB =
+	( SELECT JOB 
+		FROM emp
+		WHERE EMPNO=7369
+	)
+AND SAL>
+	( SELECT sal
+		FROM emp
+		WHERE EMPNO=7876
+	)
+SELECT 
+FROM emp
+GROUP BY DEPTNO
+HAVING MIN(SAL)>(SELECT MIN)
+
+-- 第七章 练习4 1题
+SELECT ENAME,HIREDATE
+FROM emp
+ORDER BY HIREDATE
+LIMIT 0,1
+
+-- 第七章 练习4 2题
+SELECT E.ENAME,E.SAL,D.DNAME
+FROM emp E,dept D
+WHERE D.DEPTNO=E.DEPTNO
+AND SAL > 
+	(	SELECT SAL
+		FROM emp
+		WHERE ENAME='SMITH'	
+	)
+AND D.LOC='CHICAGO'
+
+-- 第七章 练习4 3题
+SELECT ENAME,HIREDATE
+FROM emp 
+WHERE HIREDATE < 
+	(	SELECT MIN(HIREDATE)
+		FROM emp
+		WHERE DEPTNO=20	
+	)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+
+
+-- 第七章 练习4 4题
+SELECT e.deptno,d.dname,count()
+FROM emp e,dept d
+WHERE e.deptno=d.deptno
+AND HIREDATE < 
+	(	SELECT AVG(COUNT())
+		FROM emp
+		WHERE DEPTNO=20	
+	)
+
+SELECT EMPNO,ENAME,JOB,sal
+FROM emp
+WHERE deptNO <> 20
+AND SAL>ALL
+	(	SELECT SAL 
+		FROM emp	
+		WHERE DEPTNO=20
+	)
+
+-- 练习5 
+SELECT A 
+

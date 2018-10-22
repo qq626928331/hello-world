@@ -1,0 +1,39 @@
+SELECT INSERT(LOWER(ename),1,1,LEFT(ename,1)) 员工姓名 FROM emp 
+WHERE ename LIKE 'J%' or ename LIKE 'A%' OR ename LIKE 'M%'
+ORDER BY ENAME ASC
+
+
+SELECT table1.员工姓名 
+FROM 
+	(	SELECT INSERT(LOWER(ename),1,1,LEFT(ename,1)) 员工姓名 
+		FROM emp 
+	 ) table1
+WHERE table1.员工姓名 LIKE '%A%' or table1.员工姓名 LIKE '%a%'
+
+SELECT table1.员工姓名 
+FROM 
+	(	SELECT INSERT(LOWER(ename),1,1,LEFT(ename,1)) 员工姓名 
+		FROM emp 
+	 ) table1
+WHERE table1.员工姓名 IN ('A','a')
+
+SELECT table1.*
+FROM
+	(	SELECT INSERT(LOWER(ename),1,1,LEFT(ename,1)) 员工姓名 
+		FROM emp 
+	 ) table1
+WHERE LOCATE('A',员工姓名)<>0 OR LOCATE('a',员工姓名)<>0
+SELECT UTC_TIME(), CURRENT_TIME()
+
+SELECT DAYOFYEAR(CURDATE())
+SELECT DATEDIFF(CURDATE(),'1995-8-31')
+SELECT NOW()
+
+SELECT ENAME,CEIL(DATEDIFF('2000-1-1',(HIREDATE))/30),MONTH(HIREDATE) 入职月数
+FROM emp 
+WHERE DEPTNO IN (10,20)
+
+SELECT ENAME 员工姓名,HIREDATE 入职日期,DATE_ADD(HIREDATE,INTERVAL 6 MONTH) 转正时间,MONTH(HIREDATE) 入职月数,WEEK(HIREDATE) 入职周数
+FROM emp
+WHERE JOB <> 'MANAGER'
+
